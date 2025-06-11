@@ -1,0 +1,22 @@
+---
+title: "Data Analysis Example"
+author: "Diane Brown"
+format: html
+---
+
+```{r setup-analysis echo=FALSE, message=FALSE}
+
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(forcats)
+
+```
+
+Load Processed Data
+
+```{r load-processed}
+
+df <- read_csv("data/mtcars_clean.csv")
+df |> head ()
+```

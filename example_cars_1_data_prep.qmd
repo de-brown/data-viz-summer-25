@@ -1,0 +1,36 @@
+---
+title: "Data Preparation Example"
+author: "Diane Brown"
+format: html
+---
+
+A setup block
+
+```{r setup-prep echo=FALSE, message=FALSE}
+
+library(dplyr)
+library(readr)
+library(stringr)
+library(ggplot2)
+
+```
+
+Load and prepare the data
+
+```{r load-data}
+
+mtcars_clean <- mtcars |> 
+  mutate(
+    car_name = rownames(mtcars),
+    make = word(car_name, 1),  # First word is make
+    model = str_remove(car_name, paste0(make, " ")),  # Rest is model
+    efficiency = mpg / wt
+  )
+```
+
+Save Processed Data
+
+```{r Save Data}
+
+write_csv(mtcars_clean, "data/mtcars_clean.csv")
+```
